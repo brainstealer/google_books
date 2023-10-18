@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Router from './components/layout/Router/Router';
+import { BookSortContext } from './store/BookSortContext';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { setupStore } from './store/store';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+    const [bookSortByCategory, setBookSortByCategory] = useState<string>('');
+    const [bookSortByRelevance, setBookSortByRelevance] = useState('relevance');
+    const [searchQuery, setSearchQuery] = useState('');
+
+
+    const store = setupStore();
+    return (
+        <div className='App'>
+
+            <BookSortContext.Provider value={{
+                bookSortByCategory,
+                setBookSortByCategory,
+                bookSortByRelevance,
+                setBookSortByRelevance,
+                searchQuery,
+                setSearchQuery
+
+            }}>
+                <BrowserRouter>
+                    <Provider store={store}>
+                        <Router />
+                    </Provider>
+                </BrowserRouter>
+            </BookSortContext.Provider>
+
+
+        </div>
+    )
 }
 
-export default App;
+export default App

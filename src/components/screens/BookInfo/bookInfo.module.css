@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    padding: 5px;
+    position: relative;
+
+
+
+}
+
+.book_title {
+    padding: 5px;
+    max-width: calc(100%-5px);
+    font-size: 20px;
+
+}
+
+.book_title_2 {
+    padding: 5px;
+    font-size: 18px;
+    color: #00000077;
+}
